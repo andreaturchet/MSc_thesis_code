@@ -30,6 +30,12 @@ report generation.
 
 Open the notebook in Colab, Kaggle, or another GPU notebook environment.
 
+The notebook detects the runtime automatically:
+
+- Colab: outputs are written under `MyDrive/tesi/` after mounting Google Drive.
+- Kaggle: outputs are written under `/kaggle/working/tesi/`.
+- Local execution: outputs are written under `raw/experiments/`.
+
 Start with the smoke test:
 
 ```python
@@ -82,7 +88,8 @@ The notebook executes these stages:
 For the full run, the default output folder is:
 
 ```text
-MyDrive/tesi/calibrated_module_metrics_full_10x10/
+Colab:  MyDrive/tesi/calibrated_module_metrics_full_10x10/
+Kaggle: /kaggle/working/tesi/calibrated_module_metrics_full_10x10/
 ```
 
 Important outputs:
@@ -119,5 +126,8 @@ args.no_train = True
   barriers are optional and expensive on 100 modules.
 - The notebook intentionally uses MNIST only and fails if MNIST cannot be
   loaded.
+- On Kaggle, Google Drive mounting is not used; artifacts are saved to
+  `/kaggle/working/tesi/` and should be downloaded or committed as Kaggle output
+  when the run finishes.
 - A multi-GPU runtime is not automatically used by the current configuration;
   splitting seeds across separate runs is the simplest way to parallelize.
